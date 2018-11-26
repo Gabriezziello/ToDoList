@@ -12,7 +12,9 @@
             {
                 <button type="button" class="list-group-item list-group-item-action taskList" data-id="@item.Id" data-name="@item.Name">
                     @item.Name
+                    <span class="pull-right times removeListTask" data-id="@item.Id"> &times;</span>
                 </button>
+
             }
         </div>
         <div class="col-lg-12">
@@ -30,7 +32,7 @@
         </div>
     </div>
     <div class="col-md-9">
-        <h2 id="listName">Tasks</h2>
+        <h2 id="listName">Select a list to see its tasks</h2>
         <div class="col-lg-12" id="Tasks"></div>
 
     </div>
@@ -54,8 +56,8 @@
                     url: "/Home/AddTaskList",
                     data: { "Name": $("#newListName").val() },
                     success: function (data) {
-                        if (data > 0) {
-                            $("#StoreTaskList").append('<div class="taskList" data-id="' + data + '" data-name="' + $("#newListName").val() + '">' + $("#newListName").val() + '</div>');
+                        if (data > 0) {                            
+                            $("#StoreTaskList").append('<button type="button" class="list-group-item list-group-item-action taskList" data-id="' + data + '" data-name="' + $("#newListName").val() + '">' + $("#newListName").val() + '<span class="pull-right times removeListTask" data-id="' + data + '"> &times;</span></button >');
                             addEventtaskList();
                         }
                     }
@@ -100,7 +102,26 @@
                         $("#listName").html(listName);
                         $("#Tasks").html(data);
                         $("#newTaskTitle").data("listid", listId);
+                        $(".removeTask").each(function () {
+                            $(this).data("listid", listId);
+                        });
                         addEventTask();
+                    }
+                });
+            });
+
+            $(".removeListTask").unbind("click").click(function () {
+                var ListId = $(this).data("id");
+                $.ajax({
+                    type: "post",
+                    url: "/Home/RemoveListTask",
+                    data: { "ListId": ListId },
+                    success: function (data) {
+                        if (data == true) {
+                            $("#Tasks").html("");
+                            $(".taskList[data-id='" + ListId + "']").remove();
+                            $("#listName").html("Select a list to see its tasks");
+                        }
                     }
                 });
             });
@@ -114,14 +135,14 @@
             });
 
             $("#AddnewTask").unbind("click").click(function () {
+                var listId = $("#newTaskTitle").data("listid");
                 $.ajax({
                     type: "post",
                     url: "/Home/AddTask",
                     data: { "Name": $("#newTaskTitle").val(), "ListId": $("#newTaskTitle").data("listid") },
                     success: function (data) {
                         if (data > 0) {
-                            $("#storeTask").append('<div class="task" data-id="' + data + '" data-name="' + $("#newTaskTitle").val() + '">' + $("#newTaskTitle").val() + '</div>');
-                            addEventTask();
+                            $(".taskList[data-id='" + listId + "']").click();
                         }
                     }
                 });
@@ -164,6 +185,20 @@
                 });
             });
 
+            $(".removeTask").unbind("click").click(function () {
+                var Id = $(this).data("id");
+                var ListId = $(this).data("listid");
+                $.ajax({
+                    type: "post",
+                    url: "/Home/RemoveTask",
+                    data: { "Id": Id },
+                    success: function (data) {
+                        if (data == true) {
+                            $(".taskList[data-id='" + ListId + "']").click();
+                        }
+                    }
+                });
+            });
 
         }
     </script>

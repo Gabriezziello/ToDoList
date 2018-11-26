@@ -114,6 +114,43 @@ namespace TechTestToDoList.Service.Services
             return model.Checked;
         }
 
+        public bool RemoveTask(UserViewModel user, int Id)
+        {
+            try
+            {
+                var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x => x.Id).ToList();
+
+                var model = _context.Tasks.FirstOrDefault(x => x.Id == Id && listIds.Contains(x.TaskListId));
+
+                _context.Tasks.Remove(model);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }            
+        }
+
+        public bool RemoveListTask(UserViewModel user, int ListId)
+        {
+            try
+            {
+                var model = _context.TaskList.FirstOrDefault(x => x.UserId == user.id && x.Id == ListId);
+                var tasklist = _context.Tasks.Where(x => x.TaskListId == ListId).Select(x=> x);
+                _context.TaskList.Remove(model);
+                _context.Tasks.RemoveRange(tasklist);
+                _context.SaveChanges();
+
+                return true;
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public int UpdateTask(UserViewModel user, TaskViewModel newmodel)
         {
             var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x => x.Id).ToList();

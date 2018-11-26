@@ -23,8 +23,24 @@ textarea {
     max-width: 280px;
 }
 
+.task{
+    cursor:pointer;
+}
 
 .checked > .task {
     color: forestgreen !important;
     text-decoration: line-through !important;
+
+}
+
+.times {
+    font-size: 14px;
+    cursor:pointer;
+    font-weight:bold;
+}
+
+.times:hover {
+    font-size: 14px;
+    color: #d54242;
+
 }

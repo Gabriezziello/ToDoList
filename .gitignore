@@ -12,3 +12,6 @@
 /TechTestToDoList.Service/obj/Debug
 /TechTestToDoList.Tests/bin/Debug
 /TechTestToDoList.Tests/obj/Debug
+/packages
+/.vs/TechTestToDoList/v15/Server/sqlite3
+/.vs/TechTestToDoList/v15

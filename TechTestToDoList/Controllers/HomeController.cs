@@ -62,6 +62,20 @@ namespace TechTestToDoList.Controllers
             return Json(result, JsonRequestBehavior.AllowGet);
         }
 
+        public ActionResult RemoveTask(int Id)
+        {
+            var result = _taskService.RemoveTask((UserViewModel)Session["User"], Id);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult RemoveListTask(int ListId)
+        {
+            var result = _taskService.RemoveListTask((UserViewModel)Session["User"], ListId);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
         public ActionResult UpdateTask(TaskViewModel model)
         {
             var result = _taskService.UpdateTask((UserViewModel)Session["User"], model);
