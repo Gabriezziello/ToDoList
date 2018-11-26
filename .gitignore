@@ -1,0 +1,14 @@
+﻿################################################################################
+# This .gitignore file was automatically created by Microsoft(R) Visual Studio.
+################################################################################
+
+/TechTestToDoList/bin
+/TechTestToDoList/obj/Debug
+/TechTestToDoList.Dal/bin/Debug
+/TechTestToDoList.Dal/obj/Debug
+/TechTestToDoList.POCO/bin/Debug
+/TechTestToDoList.POCO/obj/Debug
+/TechTestToDoList.Service/bin/Debug
+/TechTestToDoList.Service/obj/Debug
+/TechTestToDoList.Tests/bin/Debug
+/TechTestToDoList.Tests/obj/Debug
