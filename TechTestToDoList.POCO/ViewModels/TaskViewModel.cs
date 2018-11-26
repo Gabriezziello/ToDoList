@@ -14,5 +14,6 @@ namespace TechTestToDoList.POCO.ViewModels
         public DateTime CreatedDate { get; set; }
         public DateTime LastUpdate { get; set; }
         public bool Checked { get; set; }
+        
     }
 }

@@ -1,3 +1,35 @@
-﻿@*@model List<TaskViewModel>*@
-
+﻿@model List<TechTestToDoList.POCO.ViewModels.TaskViewModel>
+@{ 
+    Layout = null;
+}
+<div class="col-lg-12">
+    <div class="col-lg-12" id="storeTask">
+        @foreach (var item in Model)
+        {
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                <label class="custom-control-label" for="customCheck1">Check this custom checkbox</label>
+            </div>
+            <div id="@item.Id" class="@(item.Checked ? "checked" : "")">
+                <div class="custom-control custom-checkbox mr-sm-2">
+                    <input type="checkbox" class="custom-control-input" id="customControlAutosizing">
+                    <label class="custom-control-label" for="customControlAutosizing">Remember my preference</label>
+                </div><input type="checkbox" class="pull-left checkTask " data-id="@item.Id" @(item.Checked ? "checked" : "") /> <span class="pull-left task " data-id="@item.Id" data-name="@item.Title" style="margin-left:10px;">@item.Title</span><span class="badge badge-primary pull-right">Last Update: @item.LastUpdate</span>
+            </div>
+        }
+    </div>
+    <div class="col-lg-12">
+        <a href="#" class="action" id="addTask">
+            <span class="glyphicon glyphicon-plus-sign" style="margin-right:10px;"></span><label>Add Task</label>
+        </a>
+    </div>
+    <div id="newTask" hidden class="col-lg-12">
+        <input class="form-control" name="Title" id="newTaskTitle" placeholder="Type a Title for your task" />
+        <div class="col-lg-12" style="margin-top:10px;">
+            <button class="btn btn-primary" id="AddnewTask">Add new List</button>
+            <button class="btn btn-default" id="CancelnewTask">Cancel</button>
+        </div>
+    </div>
+    <div class="clearfix"></div>
+</div>
 

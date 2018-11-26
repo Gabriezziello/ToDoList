@@ -14,5 +14,13 @@ namespace TechTestToDoList.Service.Interface
         int AddTaskList(UserViewModel user, string name);
 
         List<TaskViewModel> GetTasks(UserViewModel user, int ListId);
+
+        TaskViewModel GetTask(UserViewModel user, int Id);
+
+        int AddTask(UserViewModel user, string name, int ListId);
+
+        bool CheckTask(UserViewModel user, int Id);
+
+        int UpdateTask(UserViewModel user, TaskViewModel newmodel);
     }
 }

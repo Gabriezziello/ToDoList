@@ -22,3 +22,9 @@ select,
 textarea {
     max-width: 280px;
 }
+
+
+.checked > .task {
+    color: forestgreen !important;
+    text-decoration: line-through !important;
+}
