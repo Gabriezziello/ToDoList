@@ -9,7 +9,7 @@ using TechTestToDoList.POCO.DbModels;
 
 namespace TechTestToDoList.Dal
 {
-    public class ApplicationContext : DbContext
+    public class ApplicationContext : DbContext, IApplicationContext
     {
 
         public ApplicationContext() : base("DefaultConnection")
@@ -18,7 +18,8 @@ namespace TechTestToDoList.Dal
 
         public DbSet<User> Users { get; set; }
         public DbSet<TaskList> TaskList { get; set; }
-        public DbSet<Tasks> Tasks { get; set; }
+        public DbSet<Tasks> Tasks { get; set; }       
+
         //public DbSet<Enrollment> Enrollments { get; set; }
         //public DbSet<Course> Courses { get; set; }
 

@@ -10,7 +10,7 @@ using TechTestToDoList.Service.Interface;
 namespace TechTestToDoList.Controllers
 {
     [UserAuthenticationFilter]
-    public class HomeController : ControllerBase
+    public class HomeController : Controller
     {
         private readonly ITaskService _taskService;
 

@@ -48,7 +48,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
     <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="Interface\ITaskService.cs" />
     <Compile Include="Interface\IUserService.cs" />

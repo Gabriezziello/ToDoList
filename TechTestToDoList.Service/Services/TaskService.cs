@@ -12,18 +12,11 @@ namespace TechTestToDoList.Service.Services
 {
     public class TaskService : ITaskService
     {
-        private readonly ApplicationContext _context;
+        private readonly IApplicationContext _context;
 
-        public TaskService(ApplicationContext context)
+        public TaskService(IApplicationContext context)
         {
             _context = context;
-        }
-        public UserViewModel Login(LoginViewModel model)
-        {
-
-            var result = _context.Users.FirstOrDefault(x => x.UserName == model.Email && x.Password == model.HashPassword);
-
-            return result != null ? new UserViewModel { id = result.Id, username = result.UserName, sessionStartDate = DateTime.Now } : null;
         }
 
         public List<TaskListViewModel> GetTaskLists(UserViewModel user)
@@ -59,7 +52,7 @@ namespace TechTestToDoList.Service.Services
                 LastUpdate = DateTime.Now,
                 TaskListId = ListId,
                 Checked = false
-                
+
             };
             _context.Tasks.Add(model);
             _context.SaveChanges();
@@ -71,7 +64,8 @@ namespace TechTestToDoList.Service.Services
         {
             var list = _context.TaskList.FirstOrDefault(x => x.Id == ListId && x.UserId == user.id);
 
-            var result = list != null ? _context.Tasks.Where(x => x.TaskListId == ListId).Select(x=> new TaskViewModel {
+            var result = list != null ? _context.Tasks.Where(x => x.TaskListId == ListId).Select(x => new TaskViewModel
+            {
                 Checked = x.Checked,
                 CreatedDate = x.CreatedDate,
                 Description = x.Description,
@@ -85,7 +79,7 @@ namespace TechTestToDoList.Service.Services
 
         public TaskViewModel GetTask(UserViewModel user, int Id)
         {
-            var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x=> x.Id).ToList();
+            var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x => x.Id).ToList();
 
             var result = listIds != null ? _context.Tasks.Where(x => x.Id == Id && listIds.Contains(x.TaskListId)).Select(x => new TaskViewModel
             {
@@ -95,7 +89,7 @@ namespace TechTestToDoList.Service.Services
                 LastUpdate = x.LastUpdate,
                 Title = x.Title,
                 Id = x.Id
-                
+
             }).FirstOrDefault() : new TaskViewModel();
 
             return result ?? new TaskViewModel();
@@ -103,34 +97,37 @@ namespace TechTestToDoList.Service.Services
 
         public bool CheckTask(UserViewModel user, int Id)
         {
-            var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x => x.Id).ToList();
-
-            var model = _context.Tasks.FirstOrDefault(x => x.Id == Id && listIds.Contains(x.TaskListId));
-
-            model.LastUpdate = DateTime.Now;
-            model.Checked = !model.Checked;
-            _context.SaveChanges();
-
-            return model.Checked;
-        }
-
-        public bool RemoveTask(UserViewModel user, int Id)
-        {
             try
             {
                 var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x => x.Id).ToList();
-
                 var model = _context.Tasks.FirstOrDefault(x => x.Id == Id && listIds.Contains(x.TaskListId));
-
-                _context.Tasks.Remove(model);
+                model.LastUpdate = DateTime.Now;
+                model.Checked = !model.Checked;
                 _context.SaveChanges();
 
-                return true;
+                return model.Checked;
             }
             catch
             {
                 return false;
-            }            
+            }
+
+        }
+
+        public bool RemoveTask(UserViewModel user, int Id)
+        {
+            var listIds = _context.TaskList.Where(x => x.UserId == user.id).Select(x => x.Id).ToList();
+            if (listIds.Count == 0)
+                return false;
+
+            var model = _context.Tasks.FirstOrDefault(x => x.Id == Id && listIds.Contains(x.TaskListId));
+
+
+            _context.Tasks.Remove(model);
+            _context.SaveChanges();
+
+            return true;
+
         }
 
         public bool RemoveListTask(UserViewModel user, int ListId)
@@ -138,7 +135,7 @@ namespace TechTestToDoList.Service.Services
             try
             {
                 var model = _context.TaskList.FirstOrDefault(x => x.UserId == user.id && x.Id == ListId);
-                var tasklist = _context.Tasks.Where(x => x.TaskListId == ListId).Select(x=> x);
+                var tasklist = _context.Tasks.Where(x => x.TaskListId == ListId).Select(x => x);
                 _context.TaskList.Remove(model);
                 _context.Tasks.RemoveRange(tasklist);
                 _context.SaveChanges();
