@@ -10,10 +10,10 @@
         <div class="col-lg-12 list-group" id="StoreTaskList">
             @foreach (var item in Model)
             {
-                <button type="button" class="list-group-item list-group-item-action taskList" data-id="@item.Id" data-name="@item.Name">
+                <div type="button" class="list-group-item list-group-item-action taskList" data-id="@item.Id" data-name="@item.Name">
                     @item.Name
                     <span class="pull-right times removeListTask" data-id="@item.Id"> &times;</span>
-                </button>
+                </div>
 
             }
         </div>
@@ -105,12 +105,15 @@
                         $(".removeTask").each(function () {
                             $(this).data("listid", listId);
                         });
+                        $(".checkTask").each(function () {
+                            $(this).data("listid", listId);
+                        });
                         addEventTask();
                     }
                 });
             });
 
-            $(".removeListTask").unbind("click").click(function () {
+            $(".removeListTask").unbind("click").click(function (e) {                
                 var ListId = $(this).data("id");
                 $.ajax({
                     type: "post",
@@ -124,6 +127,7 @@
                         }
                     }
                 });
+                e.stopPropagation();
             });
         }
 
@@ -171,16 +175,13 @@
 
             $(".checkTask").unbind("change").change(function () {
                 var id = $(this).data("id");
+                var ListId = $(this).data("listid");
                 $.ajax({
                     type: "post",
                     url: "/Home/CheckTask",
                     data: { "Id": id },
                     success: function (data) {
-                        if (data == true) {
-                            $("#" + id).addClass("checked");
-                        } else {
-                            $("#" + id).removeClass("checked");
-                        }
+                        $(".taskList[data-id='" + ListId + "']").click();
                     }
                 });
             });
