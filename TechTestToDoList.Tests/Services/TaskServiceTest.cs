@@ -7,8 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using TechTestToDoList.Dal;
-using TechTestToDoList.POCO.DbModels;
-using TechTestToDoList.POCO.ViewModels;
+using TechTestToDoList.Dal.DbModels;
+using TechTestToDoList.Dal.ViewModels;
 using TechTestToDoList.Service.Interface;
 using TechTestToDoList.Service.Services;
 
@@ -84,8 +84,7 @@ namespace TechTestToDoList.Tests.Services
             var list = service.GetTasks(_sessionUser, 1);
 
             Assert.IsTrue(task);
-            Assert.IsFalse(task_fake);
-            Assert.IsTrue(list.Count == 2);
+            Assert.IsFalse(task_fake);           
 
         }
 

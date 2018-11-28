@@ -244,6 +244,7 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
+    <Content Include="Views\Account\Register.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -255,9 +256,9 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TechTestToDoList.POCO\TechTestToDoList.POCO.csproj">
-      <Project>{2ea1e7ae-c4f5-454c-a67d-16ac5857cf55}</Project>
-      <Name>TechTestToDoList.POCO</Name>
+    <ProjectReference Include="..\TechTestToDoList.Dal\TechTestToDoList.Dal.csproj">
+      <Project>{B912F4D5-3E1A-4920-BC6A-FF218678ACF1}</Project>
+      <Name>TechTestToDoList.Dal</Name>
     </ProjectReference>
     <ProjectReference Include="..\TechTestToDoList.Service\TechTestToDoList.Service.csproj">
       <Project>{874c23c5-8956-4d44-a64d-ebd51bcf76b7}</Project>

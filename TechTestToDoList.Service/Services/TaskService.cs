@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using TechTestToDoList.Dal;
 using System.Data.Entity;
 using TechTestToDoList.Service.Interface;
-using TechTestToDoList.POCO.ViewModels;
+using TechTestToDoList.Dal.ViewModels;
 
 namespace TechTestToDoList.Service.Services
 {
@@ -32,7 +32,7 @@ namespace TechTestToDoList.Service.Services
 
         public int AddTaskList(UserViewModel user, string name)
         {
-            var model = new POCO.DbModels.TaskList
+            var model = new Dal.DbModels.TaskList
             {
                 Name = name,
                 UserId = user.id
@@ -45,7 +45,7 @@ namespace TechTestToDoList.Service.Services
 
         public int AddTask(UserViewModel user, string name, int ListId)
         {
-            var model = new POCO.DbModels.Tasks
+            var model = new Dal.DbModels.Tasks
             {
                 Title = name,
                 CreatedDate = DateTime.Now,
@@ -137,7 +137,11 @@ namespace TechTestToDoList.Service.Services
                 var model = _context.TaskList.FirstOrDefault(x => x.UserId == user.id && x.Id == ListId);
                 var tasklist = _context.Tasks.Where(x => x.TaskListId == ListId).Select(x => x);
                 _context.TaskList.Remove(model);
-                _context.Tasks.RemoveRange(tasklist);
+                foreach(var item in tasklist)
+                {
+                    _context.Tasks.Remove(item);
+                }
+                
                 _context.SaveChanges();
 
                 return true;

@@ -50,6 +50,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="ApplicationContext.cs" />
+    <Compile Include="DbModels\TaskList.cs" />
+    <Compile Include="DbModels\Tasks.cs" />
+    <Compile Include="DbModels\User.cs" />
+    <Compile Include="Helpers\UserHelper.cs" />
     <Compile Include="IApplicationContext.cs" />
     <Compile Include="Migrations\201811222325260_addingUser.cs" />
     <Compile Include="Migrations\201811222325260_addingUser.Designer.cs">
@@ -65,16 +69,14 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\TaskListViewModel.cs" />
+    <Compile Include="ViewModels\TaskViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\TechTestToDoList.POCO\TechTestToDoList.POCO.csproj">
-      <Project>{2ea1e7ae-c4f5-454c-a67d-16ac5857cf55}</Project>
-      <Name>TechTestToDoList.POCO</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201811222325260_addingUser.resx">

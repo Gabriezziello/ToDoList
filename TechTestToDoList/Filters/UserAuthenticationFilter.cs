@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Mvc.Filters;
-using TechTestToDoList.POCO.ViewModels;
+using TechTestToDoList.Dal.ViewModels;
 
 namespace TechTestToDoList.Filters
 {

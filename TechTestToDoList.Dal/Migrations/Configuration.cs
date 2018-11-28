@@ -4,7 +4,7 @@ namespace TechTestToDoList.Dal.Migrations
     using System.Data.Entity;
     using System.Data.Entity.Migrations;
     using System.Linq;
-    using TechTestToDoList.Poco.Helpers;
+    using TechTestToDoList.Dal.Helpers;
 
     internal sealed class Configuration : DbMigrationsConfiguration<TechTestToDoList.Dal.ApplicationContext>
     {
@@ -22,7 +22,7 @@ namespace TechTestToDoList.Dal.Migrations
 
                 if (!string.IsNullOrEmpty(password))
                 {
-                    context.Users.Add(new POCO.DbModels.User { UserName = "test", DateUpdated = DateTime.Now, Password = UserHelper.Encrypt("pwd123", "test") });
+                    context.Users.Add(new Dal.DbModels.User { UserName = "test", DateUpdated = DateTime.Now, Password = UserHelper.Encrypt("pwd123", "test") });
                     context.SaveChanges();
                 }
                 

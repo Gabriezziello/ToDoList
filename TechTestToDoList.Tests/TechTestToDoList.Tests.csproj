@@ -127,10 +127,6 @@
       <Project>{b912f4d5-3e1a-4920-bc6a-ff218678acf1}</Project>
       <Name>TechTestToDoList.Dal</Name>
     </ProjectReference>
-    <ProjectReference Include="..\TechTestToDoList.POCO\TechTestToDoList.POCO.csproj">
-      <Project>{2EA1E7AE-C4F5-454C-A67D-16AC5857CF55}</Project>
-      <Name>TechTestToDoList.POCO</Name>
-    </ProjectReference>
     <ProjectReference Include="..\TechTestToDoList.Service\TechTestToDoList.Service.csproj">
       <Project>{874C23C5-8956-4D44-A64D-EBD51BCF76B7}</Project>
       <Name>TechTestToDoList.Service</Name>

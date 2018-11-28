@@ -9,8 +9,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestToDoList.Tests", "T
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestToDoList.Dal", "TechTestToDoList.Dal\TechTestToDoList.Dal.csproj", "{B912F4D5-3E1A-4920-BC6A-FF218678ACF1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestToDoList.POCO", "TechTestToDoList.POCO\TechTestToDoList.POCO.csproj", "{2EA1E7AE-C4F5-454C-A67D-16AC5857CF55}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TechTestToDoList.Service", "TechTestToDoList.Service\TechTestToDoList.Service.csproj", "{874C23C5-8956-4D44-A64D-EBD51BCF76B7}"
 EndProject
 Global
@@ -31,10 +29,6 @@ Global
 		{B912F4D5-3E1A-4920-BC6A-FF218678ACF1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B912F4D5-3E1A-4920-BC6A-FF218678ACF1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B912F4D5-3E1A-4920-BC6A-FF218678ACF1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{2EA1E7AE-C4F5-454C-A67D-16AC5857CF55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{2EA1E7AE-C4F5-454C-A67D-16AC5857CF55}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{2EA1E7AE-C4F5-454C-A67D-16AC5857CF55}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{2EA1E7AE-C4F5-454C-A67D-16AC5857CF55}.Release|Any CPU.Build.0 = Release|Any CPU
 		{874C23C5-8956-4D44-A64D-EBD51BCF76B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{874C23C5-8956-4D44-A64D-EBD51BCF76B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{874C23C5-8956-4D44-A64D-EBD51BCF76B7}.Release|Any CPU.ActiveCfg = Release|Any CPU

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using TechTestToDoList.POCO.ViewModels;
+using TechTestToDoList.Dal.ViewModels;
 using TechTestToDoList.Service.Interface;
 using TechTestToDoList.Service.Services;
 
@@ -48,8 +48,6 @@ namespace TechTestToDoList.Controllers
                 return View(model);
             }
 
-            // This doesn't count login failures towards account lockout
-            // To enable password failures to trigger account lockout, change to shouldLockout: true
             var result = _userService.Login(model);
             if (result != null)
             {
@@ -71,6 +69,43 @@ namespace TechTestToDoList.Controllers
             }
             return RedirectToAction("Index", "Home");
         }
+
+        [AllowAnonymous]
+        public ActionResult Register()
+        {
+            return View();
+        }
+
+        //
+        // POST: /Account/Register
+        [HttpPost]
+        [AllowAnonymous]
+        [ValidateAntiForgeryToken]
+        public ActionResult Register(RegisterViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                
+                var result = _userService.Create(model);
+                if (result != null)
+                {
+                    Session["User"] = result;
+                    return RedirectToAction("Index", "Home");
+                }                
+            }
+
+            // If we got this far, something failed, redisplay form
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult LogOff()
+        {
+            Session["User"] = null;
+            return RedirectToAction("Login", "Account");
+        }
+
     }
 
 

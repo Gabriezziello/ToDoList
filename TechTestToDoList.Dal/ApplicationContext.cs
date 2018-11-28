@@ -5,7 +5,7 @@ using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using TechTestToDoList.POCO.DbModels;
+using TechTestToDoList.Dal.DbModels;
 
 namespace TechTestToDoList.Dal
 {
@@ -16,9 +16,9 @@ namespace TechTestToDoList.Dal
         {
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<TaskList> TaskList { get; set; }
-        public DbSet<Tasks> Tasks { get; set; }       
+        public IDbSet<User> Users { get; set; }
+        public IDbSet<TaskList> TaskList { get; set; }
+        public IDbSet<Tasks> Tasks { get; set; }       
 
         //public DbSet<Enrollment> Enrollments { get; set; }
         //public DbSet<Course> Courses { get; set; }
